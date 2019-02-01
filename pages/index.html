@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>首页</title>
+  <script src="/jquery.min.js"></script>
+</head>
+<style>
+  *{margin:0px;padding:0px}
+ #result{
+   display:none;
+ }
+</style>
+
+<body>
+  <div>
+    <p>用户名</p>
+    <input type="text" id="username">
+    <p>密码</p>
+    <input type="text" id="password">
+    <p>年龄</p>
+    <input type="text" id="age">
+    <button id="button1">提交</button>
+    <div id="result">
+      <p>您刚才输入的用户名是 <span id="res1"></span> </p>
+      <p>您刚才输入的密码是 <span id="res2"></span> </p>
+      <p>您刚才输入的年龄是 <span id="res3"></span> </p>
+    </div>
+  </div>
+</body>
+<script>
+  $(function () {
+    $("#button1").click(function () {
+      let username = $("#username").val();
+      let password = $("#password").val();
+      let age = $("#age").val();
+      $.ajax({
+        type: "POST",
+        url: "/login",
+        data: {
+          username,
+          password,
+          age
+        },
+        success(res) {
+          $("#result").show();
+          $("#res1").html(res.username);
+          $("#res2").html(res.password);
+          $("#res3").html(res.age);
+        }
+      })
+    })
+
+  })
+</script>
+
+</html>
