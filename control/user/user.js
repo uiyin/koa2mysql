@@ -7,7 +7,7 @@ const jiemi = require('../../token/checkjiemi.js') // 加载解密模块
 var svgCaptcha = require('svg-captcha')
 //加载usermessage
 const usermessage = require('./usermessage.js') // 加载用户信息
-const weburl = 'https://koa2one.uiyin.com' // 为了应对头像
+const weburl = 'xxxxxxxxxx' // 为了应对头像
 const userdo = {
      //查验用户名是否被注册
      async checkusername(ctx){
