@@ -190,7 +190,8 @@ const userdo = {
 					message: '成功',
 					data: null,
 					token: 'Bearer ' + tk,
-                    level:realtrue.level
+                    level:realtrue.level,
+					nick:realtrue.nick
 				}
 				ctx.body = result
 			} else {
