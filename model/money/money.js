@@ -40,11 +40,27 @@ const money = {
 		let result = await sqlAll.findDataById('monet', value)
 		return result
 	},
+  	/**
+   * 查询总数2
+   */
+	async selectcount2(keys, values, start, end) {
+		let result = await sqlAll.count2('monet', keys, values, start, end)
+		return result
+	},
 	/**
    * 查询总数
    */
 	async selectcount() {
 		let result = await sqlAll.count('monet')
+		return result
+	},
+  /**
+   * 
+   * 通过日期查找所有用户信息
+   * @param keys 字段名 start 起点 end 终点
+   */
+	async selectDate(keys, values, start, end) {
+		let result = await sqlAll.select('monet', keys, values, start, end)
 		return result
 	},
 	/*查询所有元素内容*/

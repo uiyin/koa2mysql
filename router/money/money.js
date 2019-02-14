@@ -12,4 +12,6 @@ router.post('/updatemoney', moneydo.updateOne)
 router.post('/selectonemoney', moneydo.selectonemoney)
 //查询所有数据并且分页
 router.post('/selectmoney', moneydo.selectmoney)
+//查询日期期限
+router.post('/selectdate', moneydo.selectdate)
 module.exports = router

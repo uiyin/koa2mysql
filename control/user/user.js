@@ -7,7 +7,7 @@ const jiemi = require('../../token/checkjiemi.js') // 加载解密模块
 var svgCaptcha = require('svg-captcha')
 //加载usermessage
 const usermessage = require('./usermessage.js') // 加载用户信息
-const weburl = 'xxxxxxxxxx' // 为了应对头像
+const weburl = 'xxxxxxxxxxxxx' // 为了应对头像
 const userdo = {
      //查验用户名是否被注册
      async checkusername(ctx){
@@ -66,7 +66,7 @@ const userdo = {
 		let result2 = jiami(result)
 		//存到cookie思路 把验证码存到cookie里面。这样在取出来比较看看是否一样
 		ctx.cookies.set('YJ', result2, {
-			domain: 'koa2one.uiyin.com', // 写cookie所在的域名
+			domain: 'xxxxxxxxxxx', // 写cookie所在的域名
 			path: '/', // 写cookie所在的路径
 			maxAge: 60 * 1000 * 5, // cookie有效时长5分钟
 			expires: '', // cookie失效时间不设置表示关闭页面就失效
@@ -191,7 +191,7 @@ const userdo = {
 					data: null,
 					token: 'Bearer ' + tk,
                     level:realtrue.level,
-					nick:realtrue.nick
+                    nick:realtrue.nick
 				}
 				ctx.body = result
 			} else {
@@ -247,10 +247,10 @@ const userdo = {
 		let pagesize = value.pagesize || 20 // 如果有就是它没有就是20
 		let start = (value.page - 1) * pagesize //第一页数据开始
 		let end = parseInt(pagesize) //limit 10,20表示从10条以后取20条
-		let count = await user.selectcount()
-		console.log(start)
+        console.log(start)
 		console.log(end)
 		let values = `'${starttime}' and '${endtime}'`
+		let count = await user.selectcount2('create_time', values, start, end)
 		let result = await user.selectDate('create_time', values, start, end)
 		ctx.body = {
 			total: count[0].total_count - 1, // 超级管理员不出现

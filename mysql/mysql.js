@@ -31,14 +31,14 @@ let findDataById = function (table, id) {
 //money写的分页
 
 let findDataByPage2 = function (table, value) {
-	let _sql = `SELECT * FROM ${table} LIMIT ${value.start} , ${value.end}`
+	let _sql = `SELECT * FROM ${table} ORDER BY id desc LIMIT ${value.start} , ${value.end}`
 	console.log(_sql)
 	return query(_sql)
 }
 //写的分页
 
 let findDataByPage = function (table, value) {
-	let _sql = `SELECT * FROM ${table} WHERE id > 1 ORDER BY id LIMIT ${value.start} , ${value.end}`
+	let _sql = `SELECT * FROM ${table} WHERE id > 1 ORDER BY id desc LIMIT ${value.start} , ${value.end}`
 	console.log(_sql)
 	return query(_sql)
 }
@@ -65,8 +65,13 @@ let deleteDataById = function (table, id) {
 
 //按时间查询所有
 let select = function (table, keys, values, start, end) {
-	let _sql = `SELECT * FROM ${table} WHERE ${keys} between ${values} and id > 1 ORDER BY id LIMIT ${start} , ${end}`
+	let _sql = `SELECT * FROM ${table} WHERE ${keys} between ${values} and id > 1 ORDER BY id desc LIMIT ${start} , ${end}`
 	return query(_sql)
+}
+//按照时间查询总数
+let count2 = function (table, keys, values,start,end) {
+	let _sql = `SELECT COUNT(*) AS total_count FROM ${table} WHERE ${keys} between ${values} ORDER BY id desc LIMIT ${start} , ${end}`
+	return query(_sql, [table])
 }
 //查询总数
 let count = function (table) {
@@ -119,4 +124,5 @@ module.exports = {
 	updateData,
 	select,
 	count,
+  count2
 }

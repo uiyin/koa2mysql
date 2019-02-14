@@ -74,10 +74,31 @@ let selectmoney = async function (ctx) {
 		total: count[0].total_count
 	}
 }
+//查询日期符合数据
+let selectdate = async function(ctx){
+let value = ctx.request.body
+		let starttime = value.start
+		let endtime = value.end
+		let pagesize = value.pagesize || 20 // 如果有就是它没有就是20
+		let start = (value.page - 1) * pagesize //第一页数据开始
+		let end = parseInt(pagesize) //limit 10,20表示从10条以后取20条
+        console.log(start)
+		console.log(end)
+		let values = `'${starttime}' and '${endtime}'`
+		let count = await money.selectcount2('create_time', values, start, end)
+		let result = await money.selectDate('create_time', values, start, end)
+		ctx.body = {
+			total: count[0].total_count, 
+			code: 200,
+			result
+		}
+
+}
 module.exports = {
 	Insert,
 	deleteOne,
 	updateOne,
 	selectonemoney,
-	selectmoney
+	selectmoney,
+    selectdate
 }
